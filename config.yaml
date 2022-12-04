@@ -1,0 +1,12 @@
+sources:
+  - title: Единый реестр сведений о членах саморегулируемых организаций в области строительства, реконструкции, капитального ремонта, сноса объектов капитального строительства и их обязательствах
+    search_url: https://api-open-nostroy.anonamis.ru/api/sro/all/member/list
+    detail_url_page: https://reestr.nostroy.ru/member/{}
+    detail_url: https://api-open-nostroy.anonamis.ru/api/member/{}/info
+    base_url: https://reestr.nostroy.ru
+  
+  - title: Единый реестр сведений о членах саморегулируемых организаций в области инженерных изысканий, архитектурно-строительного проектирования и их обязательствах
+    search_url: https://reestr.nopriz.ru/api/sro/all/member/list
+    detail_url_page: https://reestr.nopriz.ru/member/{}
+    detail_url:  https://reestr.nopriz.ru/api/member/{}/info
+    base_url: https://reestr.nopriz.ru/
