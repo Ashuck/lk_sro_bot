@@ -49,11 +49,12 @@ def process_results(data):
         #         "%d.%m.%Y %H:%M:%S"
         #     )
         # orgs[inn].sort(key=lambda x: x['last_updated'])
-        result += orgs[inn][0]['short_description']
-        result += "\nИНН: " + orgs[inn][0]['inn']
-        result += "\nОГРН: " + orgs[inn][0]['ogrnip']
-        result += "\n" + orgs[inn][0]['director']
-        result += "\nМестонахождение: " + orgs[inn][0]['region_number']['title']
+        item = orgs[inn][0]
+        result += item['short_description']
+        result += "\nИНН: " + item['inn']
+        result += "\nОГРН: " + item['ogrnip']
+        result += "\n" + item['director'] if item['director'].strip() else ''
+        result += "\nМестонахождение: " + item.get('region_number', {'title': 'Не указано'})['title']
         result += "\nАктивное членство в следующих СРО:"
         for item in orgs[inn]:
             sro = item['sro']['full_description']
@@ -71,7 +72,6 @@ def serch_org(search_string):
             
 
     result = process_results(results)
-    print(result)
     if result:
         text = "По данному критерию найдено следующее:" + result
     else:
@@ -114,7 +114,8 @@ if __name__ == "__main__":
         elif state and state["state"] == "search":
             try:
                 text = serch_org(message.text)
-            except:
+            except Exception as e:
+                print(e)
                 text = "Что то пошло не так... Попробуйте позже"
             tasks.__delitem__(message.chat.id)
 
